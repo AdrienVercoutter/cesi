@@ -30,7 +30,7 @@ class Contact
     private $lastname;
 
     /**
-     * @ORM\OneToMany(targetEntity=PhoneNumber::class, mappedBy="contact", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=PhoneNumber::class, mappedBy="contact", cascade={"persist"}, orphanRemoval=true)
      */
     private $phoneNumbers;
 
@@ -76,6 +76,14 @@ class Contact
         return $this->phoneNumbers;
     }
 
+    public function setPhoneNumbers(Collection $phoneNumbers): self
+    {
+        $this->phoneNumbers = $phoneNumbers;
+
+        return $this;
+    }
+
+
     public function addPhoneNumber(PhoneNumber $phoneNumber): self
     {
         if (!$this->phoneNumbers->contains($phoneNumber)) {
@@ -89,7 +97,6 @@ class Contact
     public function removePhoneNumber(PhoneNumber $phoneNumber): self
     {
         if ($this->phoneNumbers->removeElement($phoneNumber)) {
-            // set the owning side to null (unless already changed)
             if ($phoneNumber->getContact() === $this) {
                 $phoneNumber->setContact(null);
             }

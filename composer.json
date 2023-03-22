@@ -17,9 +17,9 @@
         "symfony/form": "5.4.*",
         "symfony/framework-bundle": "5.4.*",
         "symfony/runtime": "5.4.*",
+        "symfony/security-core": "5.4.*",
         "symfony/twig-bundle": "5.4.*",
         "symfony/webpack-encore-bundle": "*",
-        "symfony/webpack-encore-pack": "*",
         "symfony/yaml": "5.4.*"
     },
     "config": {

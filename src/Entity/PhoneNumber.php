@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PhoneNumberRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PhoneNumberRepository::class)
@@ -19,6 +20,7 @@ class PhoneNumber
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(10)
      */
     private $number;
 

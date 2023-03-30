@@ -6,6 +6,7 @@ use App\Repository\ContactRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ContactRepository::class)
@@ -21,16 +22,20 @@ class Contact
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=2, max=100)
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=2, max=100)
      */
     private $lastname;
 
     /**
      * @ORM\OneToMany(targetEntity=PhoneNumber::class, mappedBy="contact", cascade={"persist"}, orphanRemoval=true)
+     * @Assert\Valid
+     * @Assert\Count(min = 1)
      */
     private $phoneNumbers;
 

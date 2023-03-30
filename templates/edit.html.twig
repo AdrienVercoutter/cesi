@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer PhoneNumber{% endblock %}
+
+{% block body %}
+    <h1>Edit PhoneNumber</h1>
+
+    {{ form(form) }}
+
+    <a href="{{ path('app_contact') }}">Retour a l'accueil</a>
+{% endblock %}

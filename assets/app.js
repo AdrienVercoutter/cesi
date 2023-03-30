@@ -9,6 +9,8 @@
 
 import 'bootstrap/dist/js/bootstrap.js';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './js/contact.js';
+
+import 'bootstrap/dist/css/bootstrap.css';
 
 import './styles/app.css';

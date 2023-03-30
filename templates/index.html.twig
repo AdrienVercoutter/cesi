@@ -2,36 +2,18 @@
 
 {% block body %}
 <h1>Liste de contacts</h1>
-     {{ form(form) }}
-
-     <script> 
-          const addFormToCollection = (e) => {
-               const collectionHolder = document.getElementById(e.currentTarget.getAttribute('data-collection-holder-id'));
-               console.log(collectionHolder);
-               if (!collectionHolder.hasAttribute('data-index') ) {
-                    collectionHolder.setAttribute('data-index', 0);
-               }
-
-               const item = document.createElement('div');
-
-               item.innerHTML = collectionHolder
-               .getAttribute('data-prototype')
-               .replace(
-                    /__name__/g,
-                    collectionHolder.getAttribute('data-index')
-               );
-
-               collectionHolder.appendChild(item);
-
-               collectionHolder.setAttribute('data-index', collectionHolder.getAttribute('data-index')++);
-          };
-
-          document.addEventListener('DOMContentLoaded', function() {
-               document
-                    .querySelectorAll('.add_item_link')
-                    .forEach(btn => {
-                    btn.addEventListener("click", addFormToCollection)
-               });
-          });
-     </script>
+<p><a href="{{ path('app_contact_create')}}">Créer un contact</a></p>
+{% if contacts is empty %}
+     <p>Il y a pas de contact</p>
+{% else  %}
+     <ul> 
+     {% for contact in contacts %}
+          <li>
+          <a href="{{ path('app_contact_edit',{id: contact.id}) }}">{{contact.firstname}} {{contact.lastname}}</a>
+          -
+          <a href="{{ path('app_contact_delete',{id: contact.id}) }}">Supprimer</a>
+          </li>
+     {% endfor %}
+     </ul>
+{% endif %}
 {% endblock body %}
